@@ -1,4 +1,4 @@
-# Saber_Scraper
+# Sabe Scraper
 Web Scraper for baseball data
 
-Pull Sabermetrics from Fangraphs.com
+Pull daily MLB matchup sabermetrics from Fangraphs.com
