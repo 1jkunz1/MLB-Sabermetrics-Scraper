@@ -28,7 +28,7 @@ def get_probable_pitchers():
 
         return probables, probables_teams
 
-def get_matchups():
+'''def get_matchups():
 
         i = 0
 
@@ -43,7 +43,7 @@ def get_matchups():
                 i += 1
                 
         return matchup
-        return str1
+        return str1'''
                 
 
 
