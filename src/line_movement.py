@@ -1,6 +1,5 @@
 from lxml import html
 import requests
-from tabulate import tabulate
 
 
 def get_line_movements():
@@ -10,7 +9,7 @@ def get_line_movements():
     page = requests.get('https://www.thespread.com/mlb-baseball-public-betting-chart')
     tree = html.fromstring(page.content)
 
-    for i in range(1,30):
+    for i in range(1, 30):
 
         date = tree.xpath('//*[@id="pb"]/div/div['+str(i)+']/div[1]/text()[1]')
         time = tree.xpath('//*[@id="pb"]/div/div['+str(i)+']/div[1]/text()[2]')
@@ -39,7 +38,7 @@ def get_public():
     page = requests.get('https://www.thespread.com/mlb-baseball-public-betting-chart')
     tree = html.fromstring(page.content)
 
-    for i in range(1,11):
+    for i in range(1, 11):
         
         team_id = tree.xpath('//*[@id="Mod11135"]/div/div/div[1]/div['+str(i)+']/span[2]/b/text()')
         team_name = tree.xpath('//*[@id="Mod11135"]/div/div/div[1]/div['+str(i)+']/span[3]/a/text()')
