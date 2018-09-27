@@ -6,6 +6,7 @@ team_id = {"diamondbacks":"15", "braves":"16", "orioles":"2", "cubs":"17", "reds
 probables = []
 probables_teams = []
 
+
 def get_probable_pitchers():
                 
         i = 0

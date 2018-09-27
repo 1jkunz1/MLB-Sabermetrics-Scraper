@@ -1,0 +1,17 @@
+scraper:
+  module: services/lambdas/scraper
+  handler: scraper.onEvent
+  cors: true
+  role: scraperRole
+  vendor: services/modules
+  environment:
+      USER: "${self:custom.secrets.USER}"
+  package:
+    include:
+      - services/lambdas/scraper/*
+      - services/modules/*
+      - services/__init__.py
+      - serverless.yml
+      - mlbgame/*
+      - keys.yml
+    excludeDevDependencies: false
