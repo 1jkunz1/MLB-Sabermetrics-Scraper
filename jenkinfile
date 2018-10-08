@@ -1,3 +1,67 @@
-@Library('JenkinsShared') _
+// Author: Joseph Kunzler
 
-maaster_tests()
+node('master'){
+
+    cleanWs()
+
+
+	stage ("Install Application Dependencies") {
+
+
+	echo "\n==================== Install Application Dependencies=============================\n"
+
+    	sh '''
+
+	    PYENV_HOME=$WORKSPACE/.pyenv/
+        virtualenv --no-site-packages $PYENV_HOME
+        source $PYENV_HOME/bin/activate
+
+        pip install -r requirements.txt
+        pip install nosexcover
+        pip install pylint
+	    '''
+
+	}
+
+	stage ("Execute Unit Tests") {
+
+
+	echo "\n==================== Execute Unit Tests=============================\n"
+
+
+    	sh '''
+
+    	PYENV_HOME=$WORKSPACE/.pyenv/
+        virtualenv --no-site-packages $PYENV_HOME
+        source $PYENV_HOME/bin/activate
+
+	    pylint -f parseable services/ | tee pylint.out
+	    nosetests --with-xcoverage --with-xunit --cover-package services/ || true
+	'''
+	    junit healthScaleFactor: 2.0, testResults: 'nosetests.xml'
+        cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', conditionalCoverageTargets: '70, 0, 0', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, methodCoverageTargets: '80, 0, 0', onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false
+        warnings canComputeNew: false, canResolveRelativePaths: false, categoriesPattern: '', defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', parserConfigurations: [[parserName: 'PyLint', pattern: 'pylint.out']], unHealthy: ''
+
+	}
+
+	stage('Package Artifacts'){
+
+
+	echo  "\n==================== Package Files =============================\n"
+
+
+        sh '''
+        PYENV_HOME=$WORKSPACE/.pyenv/
+        virtualenv --no-site-packages $PYENV_HOME
+        source $PYENV_HOME/bin/activate
+
+        npm install serverless-aws-documentation
+        npm install serverless-python-requirements
+
+
+        npx serverless deploy --verbose --stage production
+
+        '''
+  }
+ }
+}
