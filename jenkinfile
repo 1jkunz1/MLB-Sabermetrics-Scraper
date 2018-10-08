@@ -60,8 +60,6 @@ node('master'){
 
 
         npx serverless deploy --verbose --stage production
-
-
         '''
   }
  }
