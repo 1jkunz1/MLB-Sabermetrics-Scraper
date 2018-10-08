@@ -1,1 +1,1 @@
-from services.lambdas.scraper.scraper import *
+from services.lambdas.getPublic.scraper import *

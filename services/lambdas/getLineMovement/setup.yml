@@ -12,6 +12,5 @@ getLineMovement:
       - services/modules/*
       - services/__init__.py
       - serverless.yml
-      - mlbgame/*
       - keys.yml
     excludeDevDependencies: false

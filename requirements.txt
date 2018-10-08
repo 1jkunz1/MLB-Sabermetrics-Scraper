@@ -1,2 +1,3 @@
 mlbgame
 lxml
+requests

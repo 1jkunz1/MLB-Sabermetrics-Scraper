@@ -1,6 +1,6 @@
 scraper:
-  module: services/lambdas/scraper
-  handler: scraper.onEvent
+  module: services/lambdas/getPublic
+  handler: getPublic.onEvent
   cors: true
   role: scraperRole
   vendor: services/modules
@@ -8,7 +8,7 @@ scraper:
       USER: "${self:custom.secrets.USER}"
   package:
     include:
-      - services/lambdas/scraper/*
+      - services/lambdas/getPublic/*
       - services/modules/*
       - services/__init__.py
       - serverless.yml
