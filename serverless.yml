@@ -30,7 +30,6 @@ plugins:
 package:
   individually: true
   exclude:
-    - .idea/**
     - .git/**
     - services/**
     - scripts/**
