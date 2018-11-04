@@ -1,5 +1,5 @@
 import unittest
-from services.lambdas.getLineMovement.line_movement import get_line_movements
+from src.line_movement import get_line_movements
 
 
 class UnitTest(unittest.TestCase):
@@ -7,10 +7,10 @@ class UnitTest(unittest.TestCase):
     def test_data(self):
 
         my_test_data = get_line_movements()
-        self.assertTrue(type(my_test_data[0]) == tuple, True)
-        self.assertTrue(type(my_test_data[0][0]) == str, True)
-        self.assertTrue(len(my_test_data) < 15, True)
-        self.assertTrue(len(my_test_data) > 1, True)
+        self.assertTrue(True, type(my_test_data[0]) == tuple)
+        self.assertTrue(True, type(my_test_data[0][0]) == str)
+        self.assertTrue(False, len(my_test_data) <= 15)
+        self.assertTrue(True, len(my_test_data) >= 1)
 
 
 if __name__ == "__main__":

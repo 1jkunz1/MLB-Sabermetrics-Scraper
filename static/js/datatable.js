@@ -1,0 +1,1 @@
+$(document).ready(function(){$('#878').DataTable();});

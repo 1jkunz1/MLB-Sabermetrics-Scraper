@@ -1,4 +1,0 @@
-mlbgame
-lxml
-requests
-tabulate
