@@ -17,6 +17,7 @@ setup(
                        '*.eot', '*.woff', '*.woff2'],
                   },
     entry_points={
+        
 
     },
     data_files=[
