@@ -109,7 +109,7 @@ class RestHandler(tornado.web.RequestHandler):
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         linemovements = get_line_movements()
-        self.render("static/templates/line_movement.html",
+        self.render("templates/line_movement.html",
                     u='longcode', linemovements=linemovements)
 
 
