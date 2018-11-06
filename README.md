@@ -1,5 +1,6 @@
 # Saber Scraper
-Web Scraper for baseball data
+
+Web Scraper for Sports Data
 
 This projected started as a scraper for baseball data, I'm going to turn it into a general-purpose
 dashboard for NFL, CFB, and MLB Data
