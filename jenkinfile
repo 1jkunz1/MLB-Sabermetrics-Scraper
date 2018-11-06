@@ -11,7 +11,6 @@ node('master'){
 	echo "\n==================== Install Application Dependencies=============================\n"
 
     	sh '''
-
 	    PYENV_HOME=$WORKSPACE/.pyenv/
         virtualenv --no-site-packages $PYENV_HOME
         source $PYENV_HOME/bin/activate
@@ -37,8 +36,7 @@ node('master'){
 
 	    pylint -f parseable services/ | tee pylint.out
 	    nosetests --with-xcoverage --with-xunit --cover-package services/ || true
-	'''
-	    junit healthScaleFactor: 2.0, testResults: 'nosetests.xml'
+	    '''
         cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', conditionalCoverageTargets: '70, 0, 0', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, methodCoverageTargets: '80, 0, 0', onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false
         warnings canComputeNew: false, canResolveRelativePaths: false, categoriesPattern: '', defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', parserConfigurations: [[parserName: 'PyLint', pattern: 'pylint.out']], unHealthy: ''
 
@@ -54,12 +52,6 @@ node('master'){
         PYENV_HOME=$WORKSPACE/.pyenv/
         virtualenv --no-site-packages $PYENV_HOME
         source $PYENV_HOME/bin/activate
-
-        npm install serverless-aws-documentation
-        npm install serverless-python-requirements
-
-
-        npx serverless deploy --verbose --stage production
         '''
   }
  }

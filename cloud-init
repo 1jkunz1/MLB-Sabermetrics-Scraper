@@ -1,0 +1,3 @@
+# AWS Linux AMI
+
+sudo yum update -y

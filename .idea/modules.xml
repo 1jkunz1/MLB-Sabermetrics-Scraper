@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MLB-Sabermetrics-Scraper.iml" filepath="$PROJECT_DIR$/.idea/MLB-Sabermetrics-Scraper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mlb-saber-scraper.iml" filepath="$PROJECT_DIR$/.idea/mlb-saber-scraper.iml" />
     </modules>
   </component>
 </project>
