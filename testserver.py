@@ -1,17 +1,14 @@
 import os.path
-import logging
 
 import tornado.auth
 import tornado.escape
 import tornado.ioloop
 import tornado.options
 import tornado.web
-import requests
 
-from lxml import html
 from tornado import web
 
-from src.line_movement import get_line_movements
+from src.line_movement.line_movement_nfl import get_line_movements
 
 
 class Application(tornado.web.Application):

@@ -1,5 +1,5 @@
 import unittest
-from src.line_movement import get_line_movements
+from src.line_movement.line_movement_mlb import get_line_movements
 
 
 # Tests for Sample YouTube Series

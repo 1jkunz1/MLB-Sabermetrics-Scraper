@@ -2,7 +2,7 @@ from lxml import html
 import requests
 
 
-def get_line_movements():
+def get_line_movements_mlb():
 
     all_games = []
     

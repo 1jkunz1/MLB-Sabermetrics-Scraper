@@ -1,3 +1,5 @@
 mlbgame
 lxml
 requests
+tornado
+twitterscraper
