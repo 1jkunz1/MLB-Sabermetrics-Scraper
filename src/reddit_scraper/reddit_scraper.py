@@ -34,7 +34,7 @@ class RedditScraper(object):
 
     def make_comment_list(self, *kwargs):
 
-        # Returns a list of comments from the thread passed in
+        # Returns a list of comments from the thread passed into the function
 
         self.submission = self.reddit.submission(id='9uvphi')
 
