@@ -23,8 +23,12 @@ class NCAA(Scraper):
 
     def __init__(self):
         Scraper.__init__(self)
+        self.public_bets = []
         self.page = requests.get('https://www.thespread.com/ncaa-football-public-betting-chart')
         self.tree = html.fromstring(self.page.content)
+        self.team = None
+        self.percentage = None
+        self.team_id = None
 
     def create_game_object(self):
 
@@ -58,6 +62,20 @@ class NCAA(Scraper):
             self.all_games_clean = [x for x in self.all_games if x != ('', '', '', '', '', '', '', '', '', '', '', '')]
 
         return self.all_games_clean
+
+    def top_public(self):
+
+        for i in range(1, 10):
+            self.team_id = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[2]/a/text()')
+            self.team = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[3]/a/text()')
+            self.percentage = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[4]/b/text()')
+            public_object = (''.join(self.team), ''.join(self.percentage))
+            self.public_bets.append(public_object)
+
+        return self.public_bets
 
 
 class MLB(Scraper):

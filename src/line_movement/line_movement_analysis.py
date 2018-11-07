@@ -28,3 +28,12 @@ def measure_line_movement():
     return movements
 
 
+def get_public_bets():
+
+    ncaa = NCAA()
+
+    public_bets = ncaa.top_public()
+
+    return public_bets
+
+
