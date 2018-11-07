@@ -8,7 +8,7 @@ import tornado.web
 
 from tornado import web
 
-from src.line_movement.line_movement_nfl import get_line_movements
+from src.line_movement.line_movement import NFL, NCAA, MLB
 
 
 class Application(tornado.web.Application):
@@ -51,7 +51,8 @@ class RestHandler(tornado.web.RequestHandler):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        linemovements = get_line_movements()
+        nfl_slate = NFL()
+        linemovements = nfl_slate.create_game_object()
         self.render("templates/line_movement.html",
                     u='longcode', linemovements=linemovements)
 
