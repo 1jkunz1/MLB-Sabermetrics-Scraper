@@ -22,7 +22,7 @@ def get_daily_threads(sport):
 
     threads = dict(submissions)
 
-    for k, v in threads.items():
+    for k in list(threads):
         if sport not in k:
             del threads[k]
 
@@ -34,6 +34,8 @@ class RedditScraper(object):
     def __init__(self):
 
         self.comments = []
+        self.submissions = []
+        self.comment_queue = None
         self.submission = None
         self.mlb_threads = None
         self.nfl_threads = None
@@ -42,22 +44,6 @@ class RedditScraper(object):
 
         self.subreddit = self.reddit.subreddit('sportsbook')
         self.new_subreddit = self.subreddit.new(limit=25)
-
-    def get_daily_threads(self):
-
-        # returns a dict with the top 25 most recent threads
-        # we will run this once per day
-
-        for submission in self.new_subreddit:
-            self.submissions.append((submission.title, submission.id))
-
-        self.threads = dict(self.submissions)
-
-        for k, v in self.threads.items():
-            if 'Daily' not in k:
-                del self.threads[k]
-
-        return self.threads
 
     @staticmethod
     def get_daily_comments(args):
@@ -75,6 +61,7 @@ class RedditScraper(object):
         # Returns a list of comments from the thread passed into the function
 
         self.submission = self.reddit.submission(kwargs['thread_id'])
+        self.submission.comments.replace_more(limit=None)
 
         for comment in self.submission.comments.list():
             self.comments.append(comment.body)

@@ -40,39 +40,6 @@ class NCAAF(Scraper):
         self.percentage = None
         self.team_id = None
 
-    def create_game_object(self):
-
-        for i in range(1, 30):
-            self.date = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[1]/text()[1]')
-            self.time = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[1]/text()[2]')
-            self.open1 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[1]/text()[1]')
-            self.open2 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[1]/text()[2]')
-            self.current1 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[2]/text()[1]')
-            self.current2 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[2]/text()[2]')
-            self.away_id = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/text()[1]')
-            self.home_id = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/text()[2]')
-            self.away_team = self.tree.xpath(
-                '//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/span[@id="tmv"]/text()')
-            self.home_team = self.tree.xpath(
-                '//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/span[@id="tmh"]/text()')
-
-            game_object = (''.join(self.date),
-                           ''.join(self.time),
-                           ''.join(self.open1).rstrip(),
-                           ''.join(self.current1).rstrip(),
-                           ''.join(self.away_id)[:3].rstrip(),
-                           ''.join(self.away_team)[:3].rstrip(),
-                           ''.join(self.open2).rstrip(),
-                           ''.join(self.current2).rstrip(),
-                           ''.join(self.home_id)[:3].rstrip(),
-                           ''.join(self.home_team)[:3].rstrip())
-
-            self.all_games.append(game_object)
-
-            self.all_games_clean = [x for x in self.all_games if x != ('', '', '', '', '', '', '', '', '', '', '', '')]
-
-        return self.all_games_clean
-
 
 # Go to 'thespread.com' and scrape data from the main MLB page
 class MLB(Scraper):

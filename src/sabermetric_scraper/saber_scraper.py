@@ -3,7 +3,38 @@ import requests
 
 from tabulate import tabulate
 
-team_id = {"diamondbacks":"15", "braves":"16", "orioles":"2", "cubs":"17", "reds":"18", "indians":"5", "rockies":"19", "tigers":"6", "astros":"21", "royals":"7", "dodgers":"22", "nationals":"24", "mets":"25", "athletics":"10", "pirates":"27", "padres":"29", "mariners":"11", "giants":"30", "cardinals":"28", "rays":"12", "rangers":"13", "blue jays":"14", "twins":"8", "phillies":"26", "white sox":"4", "marlins":"20", "yankees":"9", "angels":"1", "brewers":"23", "red sox":"3"}
+team_id = {"diamondbacks":"15",
+		   "braves":"16",
+           "orioles":"2",
+           "cubs":"17",
+           "reds":"18",
+           "indians":"5",
+           "rockies":"19",
+           "tigers":"6",
+           "astros":"21",
+           "royals":"7",
+           "dodgers":"22",
+           "nationals":"24",
+           "mets":"25",
+           "athletics":"10",
+           "pirates":"27",
+           "padres":"29",
+           "mariners":"11",
+           "giants":"30",
+           "cardinals":"28",
+           "rays":"12",
+           "rangers":"13",
+           "blue jays":"14",
+           "twins":"8",
+           "phillies":"26",
+           "white sox":"4",
+           "marlins":"20",
+           "yankees":"9",
+           "angels":"1",
+           "brewers":"23",
+           "red sox":"3"}
+
+
 probables = []
 probables_teams = []
 
