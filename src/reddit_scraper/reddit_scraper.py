@@ -10,12 +10,13 @@ class RedditScraper(object):
         self.comments = []
         self.submissions = []
         self.threads = {}
+        self.submission = None
 
         self.reddit = praw.Reddit(client_id='LsEMlrflEe17VA',
                                   client_secret='U5DIf2X4jFldQpsig2-w-S0nbNE',
                                   user_agent='sabermetric-scraper',
-                                  username='x',
-                                  password='x')
+                                  username='whorunit',
+                                  password='Leebuckthorn11')
 
         self.subreddit = self.reddit.subreddit('sportsbook')
         self.new_subreddit = self.subreddit.new(limit=25)
@@ -36,7 +37,7 @@ class RedditScraper(object):
 
         # Returns a list of comments from the thread passed into the function
 
-        self.submission = self.reddit.submission(id='9uvphi')
+        self.submission = self.reddit.submission(id='9zlrrx')
 
         for comment in self.submission.comments.list():
             self.comments.append(comment.body)

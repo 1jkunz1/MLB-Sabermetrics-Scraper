@@ -19,6 +19,7 @@ class Scraper(object):
         self.home_team = None
 
 
+# Go to 'thespread.com' and scrape data from the main NCAA page
 class NCAA(Scraper):
 
     def __init__(self):
@@ -78,6 +79,7 @@ class NCAA(Scraper):
         return self.public_bets
 
 
+# Go to 'thespread.com' and scrape data from the main MLB page
 class MLB(Scraper):
 
     def __init__(self):
@@ -124,6 +126,7 @@ class MLB(Scraper):
         return self.all_games_clean
 
 
+# Go to 'thespread.com' and scrape data from the main NFL page
 class NFL(Scraper):
 
     def __init__(self):
