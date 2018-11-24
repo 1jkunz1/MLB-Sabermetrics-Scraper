@@ -15,8 +15,8 @@ class RedditScraper(object):
         self.reddit = praw.Reddit(client_id='LsEMlrflEe17VA',
                                   client_secret='U5DIf2X4jFldQpsig2-w-S0nbNE',
                                   user_agent='sabermetric-scraper',
-                                  username='whorunit',
-                                  password='Leebuckthorn11')
+                                  username= os.getenv("USERNAME"),
+                                  password=os.getenv("PASS"))
 
         self.subreddit = self.reddit.subreddit('sportsbook')
         self.new_subreddit = self.subreddit.new(limit=25)
