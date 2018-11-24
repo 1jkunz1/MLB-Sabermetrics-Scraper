@@ -38,6 +38,8 @@ class RedditScraper(object):
         self.mlb_threads = None
         self.nfl_threads = None
 
+        self.reddit = reddit
+
         self.subreddit = self.reddit.subreddit('sportsbook')
         self.new_subreddit = self.subreddit.new(limit=25)
 
@@ -58,22 +60,21 @@ class RedditScraper(object):
         return self.threads
 
     @staticmethod
-    def get_nfl_daily(self):
-        return get_daily_threads('NFL')
+    def get_daily_comments(args):
+        if 'NFL' in args:
+            return get_daily_threads('NFL')
+        elif 'MLB' in args:
+            return get_daily_threads('MLB')
+        elif 'NCAAF' in args:
+            return get_daily_threads('NCAAF')
+        elif 'NBA' in args:
+            return get_daily_threads('NBA')
 
-    @staticmethod
-    def get_mlb_daily(self):
-        return get_daily_threads('MLB')
-
-    @staticmethod
-    def get_ncaaf_daily(self):
-        return get_daily_threads('NCAAF')
-
-    def make_comment_list(self, *kwargs):
+    def make_comment_list(self, **kwargs):
 
         # Returns a list of comments from the thread passed into the function
 
-        self.submission = self.reddit.submission(id='9zlrrx')
+        self.submission = self.reddit.submission(kwargs['thread_id'])
 
         for comment in self.submission.comments.list():
             self.comments.append(comment.body)
