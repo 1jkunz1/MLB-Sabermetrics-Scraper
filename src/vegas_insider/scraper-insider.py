@@ -18,6 +18,7 @@ class Scraper(object):
         self.away_team = None
         self.home_team = None
 
+
 class NCAAB(Scraper):
 
     def __init__(self):

@@ -19,13 +19,85 @@ class Scraper(object):
         self.home_team = None
 
 
+class NBA(Scraper):
+
+    def __init__(self):
+        Scraper.__init__(self)
+        self.public_bets = []
+        self.page = requests.get('https://www.thespread.com/nba-basketball-public-betting-chart')
+        self.tree = html.fromstring(self.page.content)
+        self.team = None
+        self.percentage = None
+        self.team_id = None
+
+
 # Go to 'thespread.com' and scrape data from the main NCAA page
-class NCAA(Scraper):
+class NCAAF(Scraper):
 
     def __init__(self):
         Scraper.__init__(self)
         self.public_bets = []
         self.page = requests.get('https://www.thespread.com/ncaa-football-public-betting-chart')
+        self.tree = html.fromstring(self.page.content)
+        self.team = None
+        self.percentage = None
+        self.team_id = None
+
+    def create_game_object(self):
+
+        for i in range(1, 30):
+            self.date = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[1]/text()[1]')
+            self.time = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[1]/text()[2]')
+            self.open1 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[1]/text()[1]')
+            self.open2 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[1]/text()[2]')
+            self.current1 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[2]/text()[1]')
+            self.current2 = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[4]/div[2]/text()[2]')
+            self.away_id = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/text()[1]')
+            self.home_id = self.tree.xpath('//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/text()[2]')
+            self.away_team = self.tree.xpath(
+                '//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/span[@id="tmv"]/text()')
+            self.home_team = self.tree.xpath(
+                '//*[@id="pb"]/div/div[' + str(i) + ']/div[2]/div[2]/span[@id="tmh"]/text()')
+
+            game_object = (''.join(self.date),
+                           ''.join(self.time),
+                           ''.join(self.open1).rstrip(),
+                           ''.join(self.current1).rstrip(),
+                           ''.join(self.away_id)[:3].rstrip(),
+                           ''.join(self.away_team)[:3].rstrip(),
+                           ''.join(self.open2).rstrip(),
+                           ''.join(self.current2).rstrip(),
+                           ''.join(self.home_id)[:3].rstrip(),
+                           ''.join(self.home_team)[:3].rstrip())
+
+            self.all_games.append(game_object)
+
+            self.all_games_clean = [x for x in self.all_games if x != ('', '', '', '', '', '', '', '', '', '', '', '')]
+
+        return self.all_games_clean
+
+    def top_public(self):
+
+        for i in range(1, 10):
+            self.team_id = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[2]/a/text()')
+            self.team = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[3]/a/text()')
+            self.percentage = self.tree.xpath(
+                '//*[@id="Mod11133"]/div/div/div[1]/div[' + str(i) + ']/span[4]/b/text()')
+            public_object = (''.join(self.team), ''.join(self.percentage))
+            self.public_bets.append(public_object)
+
+        return self.public_bets
+
+
+# Go to 'thespread.com' and scrape data from the main NCAA page
+class NCAAB(Scraper):
+
+    def __init__(self):
+        Scraper.__init__(self)
+        self.public_bets = []
+        self.page = requests.get('https://www.thespread.com/ncaa-college-basketball-public-betting-chart')
         self.tree = html.fromstring(self.page.content)
         self.team = None
         self.percentage = None
@@ -163,6 +235,6 @@ class NFL(Scraper):
 
             self.all_games.append(game_object)
 
-            self.all_games_clean = [x for x in self.all_games if x != ('', '', '', '', '', '', '', '', '', '', '', '')]
+            self.all_games_clean = [x for x in self.all_games if x != ('', '', '', '', '', '', '', '', '', '')]
 
         return self.all_games_clean

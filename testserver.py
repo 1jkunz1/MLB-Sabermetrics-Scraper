@@ -8,7 +8,7 @@ import tornado.web
 
 from tornado import web
 
-from src.line_movement.line_movement import NFL, NCAA, MLB
+from src.line_movement.line_movement import NFL, NCAAB, MLB
 
 
 class Application(tornado.web.Application):
