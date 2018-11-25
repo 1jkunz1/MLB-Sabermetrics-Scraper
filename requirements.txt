@@ -6,3 +6,11 @@ twitterscraper
 praw
 pandas
 tabulate
+numpy
+matplotlib
+seaborn
+sklearn
+statsmodels
+IPython
+pydotplus
+GraphViz
