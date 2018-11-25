@@ -63,6 +63,7 @@ class FangraphsScraper(object):
 
 		return probables, probables_teams
 
+	# Only works during MLB season
 	@staticmethod
 	def get_matchups():
 		i = 0
@@ -79,14 +80,14 @@ class FangraphsScraper(object):
 
 		return matchup, str1
 
-	def players_pitching(self, pitcher, team_id):
+	def players_pitching(self, pitcher, team):
 		i = 0
 
 		while i < 21:
 
 			page = requests.get(
 				'http://www.fangraphs.com/leaders.aspx?pos=all&stats=pit&lg=all&qual=0&type=8&season=2018&month=0&season1=2018&ind=0&team={}&rost=0&age=0'.format(
-					team_id[team]))
+					self.team_id[team]))
 			tree = html.fromstring(page.content)
 
 			name = tree.xpath('//*[@id="LeaderBoard1_dg1_ctl00__{}"]/td[2]/a/text()'.format(i))
