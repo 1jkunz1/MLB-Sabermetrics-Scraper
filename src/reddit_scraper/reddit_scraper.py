@@ -45,8 +45,7 @@ class RedditScraper(object):
         self.subreddit = self.reddit.subreddit('sportsbook')
         self.new_subreddit = self.subreddit.new(limit=25)
 
-    @staticmethod
-    def get_daily_comments(args):
+    def get_daily_comments(self, args):
         if 'NFL' in args:
             return get_daily_threads('NFL')
         elif 'MLB' in args:

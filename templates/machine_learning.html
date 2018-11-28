@@ -40,7 +40,7 @@
 
    <!-- Favicons
 	================================================== -->
-   <link rel="shortcut icon" href="/static/haloshark.jpeg">
+   <link rel="shortcut icon" href="static/haloshark.jpeg">
 
 </head>
 
@@ -64,53 +64,19 @@
    </p>
 
 <img src="/static/haloshark.jpeg" style="float: left;" />
-<h1><center>NFL Line Movement</center></h1>
+<h1><center> Machine Learning Model </center></h1>
 
 <section id="resume">
 
    <div class="row education">
 
 
-      <div class="row item">
+               {% for line in machine_data %}
 
-         <div class="twelve columns">
+               <li>{{ escape(line) }}</li>
 
-            <table id="878" class="display" cellspacing="10">
-               <thead>
-               <tr>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>ID</th>
-                  <th>Away</th>
-                  <th>Open</th>
-                  <th>Current</th>
-                  <th>ID</th>
-                  <th>Home</th>
-                  <th>Open</th>
-                  <th>Current</th>
-               </tr>
-               </thead>
-               <tbody>
-               {% for line in linemovements %}
-               <tr>
-                  <td align="center"> {{ (line)[0]}}</td>
-                  <td align="center"> {{ (line)[1] }}</td>
-                  <td align="center"> {{ (line)[4] }}</td>
-                  <td align="center"> {{ (line)[5] }}</td>
-                  <td align="center"> {{ (line)[2] }}</td>
-                  <td align="center"> {{ (line)[3] }}</td>
-                  <td align="center"> {{ (line)[8] }}</td>
-                  <td align="center"> {{ (line)[9] }}</td>
-                  <td align="center"> {{ (line)[6] }}</td>
-                  <td align="center"> {{ (line)[7] }}</td>
-               </tr>
-               </tbody>
                {% end %}
-            </table>
 
-         </div>
-
-      </div> <!-- item end -->
 
    </div> <!-- main-col end -->
 
@@ -153,13 +119,6 @@
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-      $(document).ready(function() {
-      $('#example').DataTable( {
-        "bProcessing": true,
-            "bServerSide": false
-    } );
-} );
-    </script>
+
 
 </html>

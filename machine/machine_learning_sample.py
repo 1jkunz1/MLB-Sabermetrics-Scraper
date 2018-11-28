@@ -27,7 +27,7 @@ class MachineLearningExamples(object):
 		"""
 
 		from sklearn import linear_model
-		df = pd.read_csv('linear_regression_df.csv')
+		df = pd.read_csv('machine/linear_regression_df.csv')
 		df.columns = ['X', 'Y']
 		df.head()
 

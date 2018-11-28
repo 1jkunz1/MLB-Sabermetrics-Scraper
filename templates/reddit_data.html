@@ -5,10 +5,52 @@
 <html class="no-js" lang="en" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+
    <!--- Basic Page Needs
    ================================================== -->
    <meta charset="utf-8">
-   <title>Joseph Kunzler - Full Stack Software Engineer</title>
+   <title>HaloShark</title>
    <meta name="description" content="">
    <meta name="author" content="">
 
@@ -36,11 +78,34 @@
    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
    <script src="static/js/datatable.js"></script>
+    <script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
 
 
    <!-- Favicons
 	================================================== -->
-   <link rel="shortcut icon" href="static/static/favicon.png">
+   <link rel="shortcut icon" href="static/haloshark.jpeg">
 
 </head>
 
@@ -51,8 +116,21 @@
 
       <ul id="nav" class="nav">
          <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-         <li><a class="smoothscroll" href="#about">About</a></li>
+         <li><a class="smoothscroll" href="#about">Reddit</a></li>
+         <li><a class="smoothscroll" href="#about">Twitter</a></li>
+         <li><a class="smoothscroll" href="#about">Public Money</a></li>
+         <li><a class="smoothscroll" href="#about">Machine Learning</a></li>
       </ul> <!-- end #nav -->
+
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Select Sport</button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="/mlb">MLB</a>
+            <a href="#NFL">NFL</a>
+            <a href="#NCAAF">NCAAF</a>
+              <a href="#NCAAB">NCAAB</a>
+        </div>
+        </div>
 
 
 
@@ -60,54 +138,20 @@
       <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
    </p>
 
-
-<h1><center> NFL Line Movement </center></h1>
+<img src="/static/haloshark.jpeg" style="float: left;" />
+<h1><center> Reddit Sentiment </center></h1>
 
 <section id="resume">
 
    <div class="row education">
 
 
-      <div class="row item">
+               {% for line in comments %}
 
-         <div class="twelve columns">
+               <li>{{ escape(line) }}</li>
 
-            <table id="878" class="display" cellspacing="10">
-               <thead>
-               <tr>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>ID</th>
-                  <th>Away</th>
-                  <th>Open</th>
-                  <th>Current</th>
-                  <th>ID</th>
-                  <th>Home</th>
-                  <th>Open</th>
-                  <th>Current</th>
-               </tr>
-               </thead>
-               <tbody>
-               {% for line in linemovements %}
-               <tr>
-                  <td align="center"> {{ (line)[0]}}</td>
-                  <td align="center"> {{ (line)[1] }}</td>
-                  <td align="center"> {{ (line)[4] }}</td>
-                  <td align="center"> {{ (line)[5] }}</td>
-                  <td align="center"> {{ (line)[2] }}</td>
-                  <td align="center"> {{ (line)[3] }}</td>
-                  <td align="center"> {{ (line)[8] }}</td>
-                  <td align="center"> {{ (line)[9] }}</td>
-                  <td align="center"> {{ (line)[6] }}</td>
-                  <td align="center"> {{ (line)[7] }}</td>
-               </tr>
-               </tbody>
                {% end %}
-            </table>
 
-         </div>
-
-      </div> <!-- item end -->
 
    </div> <!-- main-col end -->
 
@@ -150,14 +194,5 @@
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script>
-      $(document).ready(function() {
-      $('#example').DataTable( {
-        "bProcessing": true,
-            "bServerSide": false
-    } );
-} );
-    </script>
 
 </html>
