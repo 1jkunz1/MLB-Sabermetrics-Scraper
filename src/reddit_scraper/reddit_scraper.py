@@ -1,6 +1,7 @@
 import os
 
 import praw
+import html
 
 
 reddit = praw.Reddit(client_id='LsEMlrflEe17VA',
@@ -47,13 +48,17 @@ class RedditScraper(object):
 
     def get_daily_comments(self, args):
         if 'NFL' in args:
-            return get_daily_threads('NFL')
+            nfl = list(get_daily_threads('NFL').values())
+            return nfl
         elif 'MLB' in args:
-            return get_daily_threads('MLB')
+            mlb = list(get_daily_threads('MLB').values())
+            return mlb
         elif 'NCAAF' in args:
-            return get_daily_threads('NCAAF')
+            ncaaf = list(get_daily_threads('NCAAF').values())
+            return ncaaf
         elif 'NBA' in args:
-            return get_daily_threads('NBA')
+            nba = list(get_daily_threads('NBA').values())
+            return nba
 
     def make_comment_list(self, **kwargs):
 
@@ -63,6 +68,8 @@ class RedditScraper(object):
         self.submission.comments.replace_more(limit=None)
 
         for comment in self.submission.comments.list():
-            self.comments.append(comment.body)
+            comment = comment.body
+            comment.replace('#39;', '')
+            self.comments.append(comment)
 
         return self.comments

@@ -1,198 +1,112 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!-->
-<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<html>
 <head>
+  <title>Money Button Paywall</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
+    <link rel="stylesheet" href="static/css/default.css">
+   <link rel="stylesheet" href="static/css/layout.css">
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-</style>
-
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-   <title>HaloShark</title>
-   <meta name="description" content="">
-   <meta name="author" content="">
+  <style>
+    body {
+      width: 50%;
+      margin: 10vh auto;
+      /* System default fonts */
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    }
+    code {
+      color: deeppink;
+      /* Baseline shift */
+      position: relative;
+      top: -0.05em;
+    }
+    pre {
+      color: lightseagreen;
+    }
+    blockquote {
+      background-color: #eee;
+      padding: 1em;
+      border-radius: 1em;
+      margin: 1em 0;
+    }
+    /* The CSS you'll need in your website */
+    #unlockable {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 5s;
+    }
+    #unlockable.unlocked {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 
    <!-- Mobile Specific Metas
    ================================================== -->
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-   <!-- CSS
-    ================================================== -->
-   <link rel="stylesheet" href="static/css/default.css">
-   <link rel="stylesheet" href="static/css/layout.css">
-   <link rel="stylesheet" href="static/css/media-queries.css">
-   <link rel="stylesheet" href="static/css/magnific-popup.css">
-   <link rel="stylesheet" href="static/css/font-awesome/css/font-awesome.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-
-
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="jquery/dataTables.bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-
-   <!-- Script
-   ================================================== -->
-   <script src="static/js/modernizr.js"></script>
-   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <script src="static/js/datatable.js"></script>
-    <script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
-
-
 
    <!-- Favicons
 	================================================== -->
-   <link rel="shortcut icon" href="static/haloshark.jpeg">
+   <link rel="shortcut icon" href="/static/haloshark.jpeg">
+
+    <script>
+    /* The Javascript you'll need in your website */
+    function handleSuccessfulPayment (payment) {
+      unlockContent();
+    }
+    function handleFailedPayment (error) {
+      alert("Sorry, the payment did not process correctly.")
+    }
+    function unlockContent () {
+      document.getElementById("unlockable").classList.toggle("unlocked");
+    }
+  </script>
+
+    <img src="/static/haloshark.jpeg" style="float: left;" />
 
 </head>
-
 <body>
-<!-- Header
-   ================================================== -->
 
-
-      <ul id="nav" class="nav">
+<ul id="nav" class="nav">
          <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-         <li><a class="smoothscroll" href="#about">Reddit</a></li>
-         <li><a class="smoothscroll" href="#about">Twitter</a></li>
-         <li><a class="smoothscroll" href="#about">Public Money</a></li>
-         <li><a class="smoothscroll" href="#about">Machine Learning</a></li>
+         <li><a class="smoothscroll" href="/reddit">Reddit</a></li>
+         <li><a class="smoothscroll" href="/twitter">Twitter</a></li>
+         <li><a class="smoothscroll" href="/odds">Public Money</a></li>
+         <li><a class="smoothscroll" href="/machinelearning">Machine Learning</a></li>
       </ul> <!-- end #nav -->
 
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Select Sport</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="/mlb">MLB</a>
-            <a href="#NFL">NFL</a>
-            <a href="#NCAAF">NCAAF</a>
-              <a href="#NCAAB">NCAAB</a>
-        </div>
-        </div>
+<h1>HaloShark MLB Picks</h1>
 
+<!-- Free content -->
+<p>Please pay $3 in $BSV to unlock picks</p>
 
+<p><em>Slide the Money Button to purchase</em></p>
 
-   <p class="scrolldown">
-      <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-   </p>
+<!-- Money Button -->
+<div class="money-button"
+  data-to="bitcoincash:qpvmrk8kkmu96fsad5tlw8fkuq0ja6qs6uek8jcwds"
+  data-amount="1"
+  data-currency="USD"
+  data-label="Purchase"
+  data-client-identifier="a65023353f4a69a96a959fe5f909749c"
+  data-button-id="1543563327601"
+  data-button-data="{}"
+  data-type="buy"
+     data-on-payment="handleSuccessfulPayment"
+     data-on-error="handleFailedPayment"
+></div>
 
-<img src="/static/haloshark.jpeg" style="float: left;" />
-<h1><center> Reddit Sentiment </center></h1>
-
-<section id="resume">
-
-   <div class="row education">
-
-
-               {% for line in comments %}
+<!-- Hidden content -->
+<div id="unlockable">
+  {% for line in comments %}
 
                <li>{{ escape(line) }}</li>
 
                {% end %}
+</div>
 
-
-   </div> <!-- main-col end -->
-
-   </div> <!-- End Education -->
-
-
-</section> <!-- Resume Section End-->
-
-<!-- footer
-   ================================================== -->
-<footer>
-
-   <div class="row">
-
-      <div class="twelve columns">
-
-         <ul class="social-links">
-            <li><a href="https://github.com/1jkunz1" target="_blank"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/kunzj/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-         </ul>
-
-         <ul class="copyright">
-         </ul>
-
-      </div>
-
-      <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-
-   </div>
-
-</footer> <!-- Footer End-->
-
-
+<!-- Money Button script -->
+<script src="https://www.moneybutton.com/moneybutton.js"></script>
 
 </body>
-
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!-- Datatables -->
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<!-- Bootstrap -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 </html>

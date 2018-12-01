@@ -67,7 +67,7 @@ class MainHandler(tornado.web.RequestHandler):
 class RedditHandler(tornado.web.RequestHandler):
     def get(self):
         reddit = RedditScraper()
-        comments = reddit.make_comment_list(thread_id='a0qwqa')
+        comments = reddit.make_comment_list(thread_id='a1dmz7')
         self.render("templates/reddit_data.html",
                     u='longcode', comments=comments)
 
@@ -75,7 +75,7 @@ class RedditHandler(tornado.web.RequestHandler):
 class TwitterHandler(tornado.web.RequestHandler):
     def get(self):
         reddit = RedditScraper()
-        comments = reddit.make_comment_list(thread_id='a0qwqa')
+        comments = reddit.make_comment_list(thread_id='a1dmz7')
         self.render("templates/reddit_data.html",
                     u='longcode', comments=comments)
 
@@ -83,7 +83,7 @@ class TwitterHandler(tornado.web.RequestHandler):
 class SaberHandler(tornado.web.RequestHandler):
     def get(self):
         reddit = RedditScraper()
-        comments = reddit.make_comment_list(thread_id='a0qwqa')
+        comments = reddit.make_comment_list(thread_id='a1dmz7')
         self.render("templates/reddit_data.html",
                     u='longcode', comments=comments)
 
